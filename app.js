@@ -1,3 +1,6 @@
+if (process.env.NODE_ENV !== 'production') {
+	require('dotenv').config();
+}
 const createError = require('http-errors');
 const path = require('path');
 const cookieParser = require('cookie-parser');
@@ -14,10 +17,10 @@ const helmet = require('helmet');
 
 const app = express();
 const mongoose = require('mongoose');
-const dev_db_url =
-	'mongodb+srv://dbS460:orizspileshko@cluster0.l99z2.mongodb.net/local_library?retryWrites=true&w=majority';
-const mongoDB = process.env.MONGO_URI || dev_db_url;
-mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URI, {
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
+});
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error: '));
 
