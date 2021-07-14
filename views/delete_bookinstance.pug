@@ -1,0 +1,15 @@
+extends layout 
+
+block content 
+  h1 #{title}: #{bookinstance.imprint}
+
+  p Do you really want to delete this genre?
+
+
+  form(method='POST' action='')
+    div.form-group
+    input#instid.form-control(type='hidden',name='instid', required='true', value=bookinstance._id )
+
+    button.btn.btn-primary(type='submit') Delete Book Instance  
+
+
